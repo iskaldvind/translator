@@ -1,4 +1,4 @@
-package io.iskaldvind.translator.model.datasource
+package io.iskaldvind.translator.model.data.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

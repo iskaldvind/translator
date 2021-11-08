@@ -5,9 +5,10 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import io.iskaldvind.translator.R
 import io.iskaldvind.translator.model.data.AppState
-import io.iskaldvind.translator.presenter.Interactor
 import io.iskaldvind.translator.utils.network.isOnline
 import io.iskaldvind.translator.utils.ui.AlertDialogFragment
+import io.iskaldvind.translator.viewmodel.BaseViewModel
+import io.iskaldvind.translator.viewmodel.Interactor
 
 abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity() {
 
@@ -49,4 +50,3 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
         private const val DIALOG_FRAGMENT_TAG = "74a54328-5d62-46bf-ab6b-cbf5d8c79522"
     }
 }
-
