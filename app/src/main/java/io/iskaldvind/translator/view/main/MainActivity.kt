@@ -61,7 +61,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        iniViewModel()
+        initViewModel()
         initViews()
     }
 
@@ -84,7 +84,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         }
     }
 
-    private fun iniViewModel() {
+    private fun initViewModel() {
         if (binding.mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException("The ViewModel should be initialised first")
         }
