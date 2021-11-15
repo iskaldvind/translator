@@ -7,11 +7,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import io.iskaldvind.translator.R
-import io.iskaldvind.translator.utils.network.isOnline
 import io.iskaldvind.translator.databinding.ActivityMainBinding
 import io.iskaldvind.translator.model.data.AppState
 import io.iskaldvind.translator.model.data.DataModel
 import io.iskaldvind.translator.utils.convertMeaningsToString
+import io.iskaldvind.translator.utils.network.isOnline
 import io.iskaldvind.translator.view.base.BaseActivity
 import io.iskaldvind.translator.view.descriptionscreen.DescriptionActivity
 import io.iskaldvind.translator.view.history.HistoryActivity
@@ -23,7 +23,7 @@ private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cb
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private lateinit var binding: ActivityMainBinding
-    override lateinit var model: MainActivityViewModel
+    override lateinit var model: MainViewModel
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
     private val fabClickListener: View.OnClickListener =
         View.OnClickListener {
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViewModel()
+        iniViewModel()
         initViews()
     }
 
@@ -84,11 +84,11 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         }
     }
 
-    private fun initViewModel() {
+    private fun iniViewModel() {
         if (binding.mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException("The ViewModel should be initialised first")
         }
-        val viewModel: MainActivityViewModel by viewModel()
+        val viewModel: MainViewModel by viewModel()
         model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }

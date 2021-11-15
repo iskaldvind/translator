@@ -11,8 +11,8 @@ import io.iskaldvind.translator.model.repository.RepositoryLocal
 import io.iskaldvind.translator.room.HistoryDataBase
 import io.iskaldvind.translator.view.history.HistoryInteractor
 import io.iskaldvind.translator.view.history.HistoryViewModel
-import io.iskaldvind.translator.view.main.MainActivityViewModel
 import io.iskaldvind.translator.view.main.MainInteractor
+import io.iskaldvind.translator.view.main.MainViewModel
 import org.koin.dsl.module
 
 val application = module {
@@ -24,7 +24,7 @@ val application = module {
 }
 
 val mainScreen = module {
-    factory { MainActivityViewModel(get()) }
+    factory { MainViewModel(get()) }
     factory { MainInteractor(get(), get()) }
 }
 

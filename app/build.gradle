@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdkVersion 31
     defaultConfig {
-        applicationId "geekbrains.ru.translator"
+        applicationId "io.iskaldvind.translator"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1

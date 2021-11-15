@@ -1,12 +1,14 @@
-package io.iskaldvind.translator.view.history
+package io.iskaldvind.translator.view.main
 
 import androidx.lifecycle.LiveData
 import io.iskaldvind.translator.model.data.AppState
-import io.iskaldvind.translator.utils.parseLocalSearchResults
+import io.iskaldvind.translator.utils.parseOnlineSearchResults
 import io.iskaldvind.translator.viewmodel.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class HistoryViewModel(private val interactor: HistoryInteractor) :
+class MainViewModel(private val interactor: MainInteractor) :
     BaseViewModel<AppState>() {
 
     private val liveDataForViewToObserve: LiveData<AppState> = _mutableLiveData
@@ -21,8 +23,9 @@ class HistoryViewModel(private val interactor: HistoryInteractor) :
         viewModelCoroutineScope.launch { startInteractor(word, isOnline) }
     }
 
-    private suspend fun startInteractor(word: String, isOnline: Boolean) {
-        _mutableLiveData.postValue(parseLocalSearchResults(interactor.getData(word, isOnline)))
+    //Doesn't have to use withContext for Retrofit call if you use .addCallAdapterFactory(CoroutineCallAdapterFactory()). The same goes for Room
+    private suspend fun startInteractor(word: String, isOnline: Boolean) = withContext(Dispatchers.IO) {
+        _mutableLiveData.postValue(parseOnlineSearchResults(interactor.getData(word, isOnline)))
     }
 
     override fun handleError(error: Throwable) {
@@ -30,7 +33,7 @@ class HistoryViewModel(private val interactor: HistoryInteractor) :
     }
 
     override fun onCleared() {
-        _mutableLiveData.value = AppState.Success(null)//Set View to original state in onStop
+        _mutableLiveData.value = AppState.Success(null)//TODO Workaround. Set View to original state
         super.onCleared()
     }
 }

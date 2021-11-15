@@ -1,8 +1,8 @@
 package io.iskaldvind.translator.model.datasource
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import io.iskaldvind.translator.model.data.DataModel
 import io.iskaldvind.translator.model.data.api.ApiService
+import io.iskaldvind.translator.model.data.DataModel
 import io.iskaldvind.translator.model.data.api.BaseInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
