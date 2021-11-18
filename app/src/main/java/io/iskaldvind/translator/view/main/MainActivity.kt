@@ -5,18 +5,17 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.Observer
+import io.iskaldvind.core.BaseActivity
+import io.iskaldvind.history.view.history.HistoryActivity
+import io.iskaldvind.model.data.AppState
+import io.iskaldvind.model.data.DataModel
 import io.iskaldvind.translator.R
 import io.iskaldvind.translator.databinding.ActivityMainBinding
-import io.iskaldvind.translator.model.data.AppState
-import io.iskaldvind.translator.model.data.DataModel
 import io.iskaldvind.translator.utils.convertMeaningsToString
-import io.iskaldvind.translator.utils.network.isOnline
-import io.iskaldvind.translator.view.base.BaseActivity
 import io.iskaldvind.translator.view.descriptionscreen.DescriptionActivity
-import io.iskaldvind.translator.view.history.HistoryActivity
 import io.iskaldvind.translator.view.main.adapter.MainAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import io.iskaldvind.utils.network.isOnline
+import org.koin.android.viewmodel.ext.android.viewModel
 
 private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
 
@@ -39,7 +38,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                         this@MainActivity,
                         data.text!!,
                         convertMeaningsToString(data.meanings!!),
-                        data.meanings[0].imageUrl
+                        data.meanings!![0].imageUrl
                     )
                 )
             }
@@ -90,7 +89,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         }
         val viewModel: MainViewModel by viewModel()
         model = viewModel
-        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
+        model.subscribe().observe(this@MainActivity, { renderData(it) })
     }
 
     private fun initViews() {

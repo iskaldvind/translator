@@ -10,8 +10,8 @@ import coil.ImageLoader
 import coil.request.LoadRequest
 import io.iskaldvind.translator.R
 import io.iskaldvind.translator.databinding.ActivityDescriptionBinding
-import io.iskaldvind.translator.utils.network.isOnline
-import io.iskaldvind.translator.utils.ui.AlertDialogFragment
+import io.iskaldvind.utils.network.isOnline
+import io.iskaldvind.utils.ui.AlertDialogFragment
 
 class DescriptionActivity : AppCompatActivity() {
 
@@ -87,9 +87,6 @@ class DescriptionActivity : AppCompatActivity() {
                     imageView.setImageResource(R.drawable.ic_load_error_vector)
                 }
             )
-            //.transformations(
-            //    CircleCropTransformation(),
-            //)
             .build()
 
         ImageLoader(this).execute(request)

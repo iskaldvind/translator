@@ -1,10 +1,10 @@
 package io.iskaldvind.translator.view.main
 
-import io.iskaldvind.translator.model.data.AppState
-import io.iskaldvind.translator.model.data.DataModel
-import io.iskaldvind.translator.model.repository.Repository
-import io.iskaldvind.translator.model.repository.RepositoryLocal
-import io.iskaldvind.translator.viewmodel.Interactor
+import io.iskaldvind.core.viewmodel.Interactor
+import io.iskaldvind.model.data.AppState
+import io.iskaldvind.model.data.DataModel
+import io.iskaldvind.repository.Repository
+import io.iskaldvind.repository.RepositoryLocal
 
 class MainInteractor(
     private val repositoryRemote: Repository<List<DataModel>>,
