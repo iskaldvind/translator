@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import io.iskaldvind.model.data.DataModel
+import io.iskaldvind.model.data.userdata.DataModel
 import io.iskaldvind.translator.R
-import io.iskaldvind.translator.utils.convertMeaningsToString
+import io.iskaldvind.translator.utils.convertMeaningsToSingleString
 
 class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
     RecyclerView.Adapter<MainAdapter.RecyclerItemViewHolder>() {
@@ -40,7 +40,7 @@ class MainAdapter(private var onListItemClickListener: OnListItemClickListener) 
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 itemView.findViewById<TextView>(R.id.header_textview_recycler_item).text = data.text
                 itemView.findViewById<TextView>(R.id.description_textview_recycler_item).text =
-                    convertMeaningsToString(data.meanings!!)
+                    convertMeaningsToSingleString(data.meanings)
                 itemView.setOnClickListener { openInNewWindow(data) }
             }
         }
